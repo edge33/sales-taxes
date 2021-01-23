@@ -1,5 +1,72 @@
 {
   "config": {
-    "baseTaxesPercentage": "10"
-  }
+    "baseTaxesPercentage": 10,
+    "exceptedCategories": ["books", "food", "medicals"],
+    "importTaxPercentage": 50
+  },
+  "items": [
+    {
+      "name": "Test-Driven Development: By Example.",
+      "type": "book",
+      "category": "books",
+      "price": 12.49,
+      "imported": false
+    },
+    {
+      "name": "Metropolis Part II: Scenes from a memory",
+      "type": "music CD",
+      "category": "music",
+      "price": 14.99,
+      "imported": false
+    },
+    {
+      "name": "Milkyway",
+      "type": "chocolate bar",
+      "category": "food",
+      "price": 0.85,
+      "imported": false
+    },
+    {
+      "name": "Swiss Best Surprise Chest",
+      "type": "imported box of chocolates",
+      "category": "food",
+      "price": 10.0,
+      "imported": true
+    },
+    {
+      "name": "Eau de toilette",
+      "type": "imported bottle of perfume",
+      "category": "cosmetics",
+      "price": 47.5,
+      "imported": true
+    },
+    {
+      "name": "Eau de toilette - small sized",
+      "type": "imported bottle of perfume",
+      "category": "cosmetics",
+      "price": 27.99,
+      "imported": true
+    },
+    {
+      "name": "Local fragrance - nothing fancy...",
+      "type": "bottle of perfume",
+      "category": "cosmetics",
+      "price": 18.99,
+      "imported": false
+    },
+    {
+      "name": "Local fragrance - nothing fancy...",
+      "type": "packet of headache pills",
+      "category": "medicals",
+      "price": 9.75,
+      "imported": false
+    },
+    {
+      "name": "Belgian flavours",
+      "type": "imported box of chocolates",
+      "category": "food",
+      "price": 11.25,
+      "imported": true
+    }
+  ]
 }
