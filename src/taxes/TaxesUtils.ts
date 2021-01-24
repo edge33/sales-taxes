@@ -1,10 +1,9 @@
-import { ItemModel } from '../items/ItemModel';
-import DataLayer from '../data/DataLayer';
+import { ConfigModel } from '../ConfigModel';
+import { OrderItemModel } from '../orders/OrderModel';
 
-export function getTaxAmount(item: ItemModel): number {
-  const config = DataLayer.getConfig();
+export function getTaxAmount(item: OrderItemModel, config: ConfigModel): number {
   let taxAmount = 0;
-  if (!config.exceptedCategories.includes(item.category)) {
+  if (item.taxable) {
     taxAmount = getTaxValue(item.price, config.baseTaxesPercentage);
   }
   if (item.imported) {

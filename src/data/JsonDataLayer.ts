@@ -3,7 +3,7 @@ import path from 'path';
 import FileSync from 'lowdb/adapters/FileSync';
 
 import DataLayerInterface from './DataLayerInterface';
-import { ItemModel } from '../items/ItemModel';
+import { ItemCategoryMappingsModel } from '../categories/ItemCategoryMappingsModel';
 import { ConfigModel } from '../ConfigModel';
 
 export class JsonDataLayer implements DataLayerInterface {
@@ -13,8 +13,9 @@ export class JsonDataLayer implements DataLayerInterface {
     this.adapter = new FileSync(path.join(__dirname, 'db', 'db.json'));
     this.db = low(this.adapter);
   }
-  getItems(): ItemModel[] {
-    return this.db.get('items').value();
+
+  GetItemCategoryMappings(): ItemCategoryMappingsModel {
+    return this.db.get('typeCategories').value();
   }
 
   getConfig(): ConfigModel {

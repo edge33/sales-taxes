@@ -1,7 +1,7 @@
 import { ConfigModel } from '../ConfigModel';
-import { ItemModel } from '../items/ItemModel';
+import { ItemCategoryMappingsModel } from '../categories/ItemCategoryMappingsModel';
 
 export default interface DataLayer {
   getConfig(): ConfigModel;
-  getItems(): ItemModel[];
+  GetItemCategoryMappings(): ItemCategoryMappingsModel;
 }

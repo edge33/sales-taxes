@@ -1,8 +1,19 @@
-import { readFile } from 'fs';
+import fs from 'fs';
+import readline from 'readline';
 
-export const getFile = (filePath: string, cb: (data: string[]) => void): void => {
-  readFile(filePath, 'utf-8' ,(err, data) => {
-    const array = data.split('\r\n');
-    cb(array);
+export function readFile(filePath: string): Promise<string[]> {
+  return new Promise(resolve => {
+    const lineReader = readline.createInterface({
+      input: fs.createReadStream(filePath)
+    });
+    const input = [];
+    lineReader.on('line', function (line) {
+      input.push(line);
+    });
+
+    lineReader.on('close', () => {
+      input.push('');
+      resolve(input);
+    });
   });
-};
+}

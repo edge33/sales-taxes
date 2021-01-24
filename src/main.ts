@@ -1,30 +1,23 @@
 import { loadOrders } from './orders/LoadOrders';
 import path from 'path';
-import { getFile } from './utils/ReadFile';
-import { getItemFromOrder } from './items/ItemUtils';
-import { getTaxAmount } from './taxes/TaxesUtils';
+import { readFile } from './utils/ReadFile';
+import DataLayer from './data/DataLayer';
+import { buildReceipts } from './receipts/ReceiptUtils';
 
-getFile(path.join(__dirname, 'input', 'input.txt'), data => {
-  const orders = loadOrders(data);
-  for (const order of orders) {
-    let orderTotal = 0;
-    let totalTaxes = 0;
-    for (const item of order.items) {
-      const itemModel = getItemFromOrder(item);
-      const taxAmount = getTaxAmount(itemModel);
-      let totalPrice = item.quantity * itemModel.price;
-      const roundexTaxAmount = +roundToTwo(taxAmount);
-      totalPrice += roundexTaxAmount;
-      orderTotal += totalPrice;
-      totalTaxes += roundexTaxAmount;
-      console.log(`${item.quantity} ${itemModel.type}: ${totalPrice.toFixed(2)}`);
+const config = DataLayer.getConfig();
+
+async function printOrders(): Promise<void> {
+  const inputData = await readFile(path.join(__dirname, 'input', 'input.txt'));
+  const orders = loadOrders(inputData, config);
+  const receipts = buildReceipts(orders, config);
+  for (const receipt of receipts) {
+    for (const item of receipt.orderData) {
+      console.log(`${item.quantity} ${item.type}: ${item.price.toFixed(2)}`);
     }
-    console.log(`Sales Taxes: ${totalTaxes.toFixed(2)}`);
-    console.log(`Total: ${orderTotal.toFixed(2)}`);
-    console.log('');
+    console.log(`Sales Taxes: ${receipt.totalTaxAmount.toFixed(2)}`);
+    console.log(`Total: ${receipt.totalPrice.toFixed(2)}`);
+    console.log();
   }
-});
-
-function roundToTwo(num): number {
-  return Math.ceil(num / 0.05) * 0.05;
 }
+
+printOrders();

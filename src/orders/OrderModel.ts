@@ -6,4 +6,6 @@ export interface OrderItemModel {
   type: string;
   price: number;
   quantity: number;
+  taxable: boolean;
+  imported: boolean;
 }
