@@ -7,7 +7,7 @@
     "tsc:watch": "tsc -w",
     "dev": "ts-node-dev --inspect=4321 --respawn --transpile-only ./src/main.ts",
     "lint": "eslint . --ext .ts",
-    "build": "npm run test && rimraf dist && tsc --noEmitOnError && cp -r src/data/db/ dist/data/ && cp -r src/input dist/",
+    "build": "rimraf dist && tsc --noEmitOnError && cp -r src/data/db/ dist/data/ && cp -r src/input dist/",
     "ci:build": "tsc --noEmitOnError && cp -r src/data/db/ dist/data/ && cp -r src/input dist/",
     "start": "node dist/main.js",
     "test": "mocha -r ts-node/register 'src/**/*.test.ts'"

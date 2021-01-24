@@ -21,9 +21,10 @@ getFile(path.join(__dirname, 'input', 'input.txt'), data => {
     }
     console.log(`Sales Taxes: ${totalTaxes.toFixed(2)}`);
     console.log(`Total: ${orderTotal.toFixed(2)}`);
+    console.log('');
   }
 });
 
 function roundToTwo(num): number {
-  return Math.round(num / 0.05) * 0.05;
+  return Math.ceil(num / 0.05) * 0.05;
 }
