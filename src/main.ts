@@ -21,7 +21,6 @@ getFile(path.join(__dirname, 'input', 'input.txt'), data => {
     }
     console.log(`Sales Taxes: ${totalTaxes.toFixed(2)}`);
     console.log(`Total: ${orderTotal.toFixed(2)}`);
-    console.log('');
   }
 });
 
