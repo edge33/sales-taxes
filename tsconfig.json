@@ -8,5 +8,4 @@
     "outDir": "dist"
   },
   "lib": ["es2015"],
-  "assets": ["scr/data/db/db.json"]
 }

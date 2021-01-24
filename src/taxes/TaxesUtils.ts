@@ -1,16 +1,18 @@
 import { ItemModel } from '../items/ItemModel';
 import DataLayer from '../data/DataLayer';
 
-export function computePriceWithTaxes(item: ItemModel): number {
+export function getTaxAmount(item: ItemModel): number {
   const config = DataLayer.getConfig();
-  let newPrice = item.price;
+  let taxAmount = 0;
   if (!config.exceptedCategories.includes(item.category)) {
-    newPrice += getTaxValue(newPrice, config.baseTaxesPercentage);
+    taxAmount = getTaxValue(item.price, config.baseTaxesPercentage);
   }
-
-  return newPrice;
+  if (item.imported) {
+    taxAmount += getTaxValue(item.price, config.importTaxPercentage);
+  }
+  return taxAmount;
 }
 
 function getTaxValue(price, taxPercentage): number {
-  return Math.ceil(((price * taxPercentage) / 100) * 100) / 100;
+  return (price * taxPercentage) / 100;
 }

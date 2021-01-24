@@ -4,4 +4,5 @@ export interface ItemModel {
   category: 'string';
   price: number;
   quantity: number;
+  imported: boolean;
 }

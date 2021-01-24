@@ -2,7 +2,7 @@
   "config": {
     "baseTaxesPercentage": 10,
     "exceptedCategories": ["books", "food", "medicals"],
-    "importTaxPercentage": 50
+    "importTaxPercentage": 5
   },
   "items": [
     {
