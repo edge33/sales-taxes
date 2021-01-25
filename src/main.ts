@@ -7,7 +7,13 @@ import { buildReceipts } from './receipts/ReceiptUtils';
 const config = DataLayer.getConfig();
 
 async function printOrders(): Promise<void> {
-  const inputData = await readFile(path.join(__dirname, 'input', 'input.txt'));
+  let inputData = [];
+  try {
+    inputData = await readFile(path.join(__dirname, 'input', 'input.txt'));
+  } catch (err) {
+    console.error(err);
+    return;
+  }
   const orders = loadOrders(inputData, config);
   const receipts = buildReceipts(orders, config);
   for (const receipt of receipts) {
